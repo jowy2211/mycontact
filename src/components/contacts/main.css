@@ -1,0 +1,15 @@
+.contact-list {
+	min-height: 480px;
+}
+
+.create-button {
+	text-align: right;
+}
+
+.back-button {
+	text-align: left;
+}
+
+.submit-button {
+	text-align: right;
+}
