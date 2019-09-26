@@ -18,19 +18,20 @@ export default function contactReducer(state = initialState, action) {
 	case 'ADD_NEW_CONTACT':
 		return {
 	        ...state,
-	        error: null
+	        error: null,
+	        data: {...state,[action.payload.data.id]: action.payload.data}
 		};
 	case 'ADD_DETAIL_CONTACT':
 		return {
 			...state,
 	        error: null,
-	        data: {...state.data, [action.payload.data.id]: action.payload.data}
+	        data: {...state.data, [action.payload.data]: action.payload.data}
 		};
 	case 'UPDATE_CONTACT':
 		return {
 			...state,
 	        error: null,
-	        data: {...state.data, list: action.payload}
+	        data: {...state.data, [action.payload.data.id]: action.payload.data}
 		};
 	case 'DELETE_CONTACT':
 		return {

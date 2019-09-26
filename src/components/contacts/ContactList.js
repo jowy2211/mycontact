@@ -50,16 +50,18 @@ class ContactList extends React.Component {
 	render() {
 		console.log(this.props.contacts);
 		return (
-			<div className="ui segments">
-				<div className="ui segment create-button">
-					<Link to="/contact/new" className="tiny ui basic green button">Create New</Link>
-				</div>
-				<div className="ui segment contact-list">
-					<div className="ui centered cards">
-						{this.renderContactList()}
+			<React.Fragment>
+				<div className="ui segments">
+					<div className="ui segment create-button">
+						<Link to="/contact/new" className="tiny ui basic green button">Create New</Link>
+					</div>
+					<div className="ui segment contact-list">
+						<div className="ui centered cards">
+							{this.renderContactList()}
+						</div>
 					</div>
 				</div>
-			</div>
+			</React.Fragment>
 		);
 	}
 }
