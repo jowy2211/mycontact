@@ -15,6 +15,7 @@ class ContactEdit extends React.Component {
 	}
 
 	render() {
+		console.log(this.props.contact);
 		if (!this.props.contact) {
 			return (
 				<div className="ui active dimmer">
@@ -38,7 +39,9 @@ class ContactEdit extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-	return { contact: state.contacts.data[ownProps.match.params.id] };
+	if (state.contacts) {
+		return { contact: state.contacts.data[ownProps.match.params.id] };
+	}
 };
 
 export default connect(mapStateToProps, { getContactById, editContact })(ContactEdit);

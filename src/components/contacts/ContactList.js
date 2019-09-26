@@ -10,9 +10,9 @@ class ContactList extends React.Component {
 	}
 
 	renderContactList() {
-		const data = this.props.contacts.data.list;
-		if (data) {
-			return data.map( (contact) => {
+		const res = this.props.contact;
+		if (res.data.list) {
+			return res.data.list.map( (contact) => {
 				const fullname = contact.firstName +' '+ contact.lastName;
 				return (
 				<div key={contact.id} className="card">
@@ -47,10 +47,23 @@ class ContactList extends React.Component {
 		);
 	}
 
+	renderStatus() {
+		if (this.props.contact.error) {
+			return (
+				<div className="ui error message">
+					{this.props.contact.error}
+				</div>
+			);
+		}
+
+		return (<div></div>);
+	}
+
 	render() {
-		console.log(this.props.contacts);
+		console.log(this.props.contact);
 		return (
 			<React.Fragment>
+				{this.renderStatus()}
 				<div className="ui segments">
 					<div className="ui segment create-button">
 						<Link to="/contact/new" className="tiny ui basic green button">Create New</Link>
@@ -67,7 +80,7 @@ class ContactList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-	return {contacts: state.contacts};
+	return {contact: state.contacts};
 };
 
 export default connect(mapStateToProps,{getAllContact})(ContactList);
