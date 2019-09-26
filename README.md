@@ -1,8 +1,16 @@
 # MyContact CURD with ReactJS
 
-## Available Scripts
+### Available Scripts
 
 In the project directory, you can run:
+
+## Initial Setup
+
+After cloning or download the source code, run the command below :
+
+### `npm install`
+
+then,
 
 ### `npm start`
 
