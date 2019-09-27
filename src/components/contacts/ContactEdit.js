@@ -15,7 +15,6 @@ class ContactEdit extends React.Component {
 	}
 
 	render() {
-		console.log(this.props.contact);
 		if (!this.props.contact) {
 			return (
 				<div className="ui active dimmer">
@@ -30,7 +29,7 @@ class ContactEdit extends React.Component {
 					<h4 className="ui dividing header">Edit Contact</h4>
 				</div>
 				<ContactForm 
-					initialValues={_.pick(this.props.contact, 'firstName', 'lastName', 'age', 'photo')} 
+					initialValues={_.pick(this.props.contact, 'firstName', 'lastName', 'age', 'photo')}
 					onSubmit={this.onSubmit} 
 				/>
 			</div>
@@ -40,7 +39,7 @@ class ContactEdit extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
 	if (state.contacts) {
-		return { contact: state.contacts.data[ownProps.match.params.id] };
+		return { contact: state.contacts[ownProps.match.params.id] };
 	}
 };
 

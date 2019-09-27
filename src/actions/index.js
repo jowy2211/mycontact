@@ -3,8 +3,6 @@ import history from '../history';
 
 export const getAllContact = () => {
   return dispatch => {
-  	dispatch(started());
-
     axios
       .get(`https://simple-contact-crud.herokuapp.com/contact`)
       .then((res) => {
@@ -18,8 +16,6 @@ export const getAllContact = () => {
 
 export const getContactById = (id) => {
   return dispatch => {
-  	dispatch(started());
-
     axios
       .get(`https://simple-contact-crud.herokuapp.com/contact/${id}`)
       .then((res) => {
@@ -70,7 +66,7 @@ export const deleteContact = (id) => {
     axios
       .delete(`https://simple-contact-crud.herokuapp.com/contact/${id}`)
       .then((res) => {
-        dispatch(removeContact(res.data));
+        dispatch(removeContact(id));
       })
       .catch(err => {
         dispatch(addContactFailure(err.message));
@@ -81,7 +77,7 @@ export const deleteContact = (id) => {
 
 const addAllContact = (contact) => ({
   type: 'ADD_ALL_CONTACT',
-  payload: {...contact}
+  payload: contact
 });
 
 const addNewContact = (contact) => ({
@@ -96,7 +92,7 @@ const getDetailContact = (contact) => ({
 
 const updateContact = (contact) => ({
 	type: 'UPDATE_CONTACT',
-	payload: {...contact}
+	payload: contact
 });
 
 const removeContact = (contact) => ({

@@ -10,16 +10,17 @@ class ContactList extends React.Component {
 	}
 
 	renderContactList() {
-		const res = this.props.contact;
-		if (res.data.list) {
-			return res.data.list.map( (contact) => {
+		if (this.props.contact.data) {
+			const res = Object.values(this.props.contact.data);
+			return res.map( (contact) => {
+				const photo = (contact.photo !== 'N/A') ? contact.photo : 'https://semantic-ui.com/images/avatar2/large/kristy.png';
 				const fullname = contact.firstName +' '+ contact.lastName;
 				return (
 				<div key={contact.id} className="card">
 					<div className="content">
 					  <img 
 					  	className="right floated mini ui image" 
-					  	src={contact.photo} 
+					  	src={photo} 
 					  	alt={fullname} 
 					  />
 					  <div className="header">

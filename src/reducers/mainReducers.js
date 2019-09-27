@@ -12,26 +12,25 @@ export default function contactReducer(state = initialState, action) {
     case 'ADD_ALL_CONTACT':
 		return {
 	        ...state,
-	        error: null,
-	        data: {...state.data, list: action.payload.data}
+	        data: action.payload.data,
 		};
 	case 'ADD_NEW_CONTACT':
 		return {
 	        ...state,
-	        error: null,
-	        data: {...state,[action.payload]: action.payload}
+	        [action.payload.message]: action.payload,
+	        error: null
 		};
 	case 'ADD_DETAIL_CONTACT':
 		return {
 			...state,
-	        error: null,
-	        data: {...state, [action.payload.data.id]: action.payload.data}
+	        [action.payload.data.id]: action.payload.data,
+	        error: null
 		};
 	case 'UPDATE_CONTACT':
 		return {
 			...state,
-	        error: null,
-	        data: {...state, [action.payload]: action.payload}
+	        [action.payload.data.id]: action.payload.data,
+	        error: null
 		};
 	case 'DELETE_CONTACT':
 		return {
@@ -48,20 +47,3 @@ export default function contactReducer(state = initialState, action) {
       return state;
   }
 }
-
-// export default (state = [], action) => {
-// 	switch(action.type) {
-// 		case 'GET_ALL_CONTACTS':
-// 			return action.payload;
-// 		case 'GET_CONTACT_BY_ID':
-// 			return { ...state.contact, [action.payload.data.id]: action.payload };
-// 		case 'CREATE_CONTACT':
-// 			return { ...state.contact, [action.payload.id]: action.payload };
-// 		case 'EDIT_CONTACT':
-// 			return { ...state.contact, [action.payload.id]: action.payload };
-// 		case 'DELETE_CONTACT':
-// 			return _.omit(state, action.payload);
-// 		default:
-// 			return state;
-// 	}
-// }
