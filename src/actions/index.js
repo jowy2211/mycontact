@@ -66,7 +66,7 @@ export const deleteContact = (id) => {
     axios
       .delete(`https://simple-contact-crud.herokuapp.com/contact/${id}`)
       .then((res) => {
-        dispatch(removeContact(id));
+        dispatch(removeContact(res.data));
       })
       .catch(err => {
         dispatch(addContactFailure(err.message));

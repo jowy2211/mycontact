@@ -11,39 +11,33 @@ class ContactList extends React.Component {
 
 	renderContactList() {
 		const res = Object.values(this.props.contact.data);
-		if (res) {
-			return res.map( (contact) => {
-				const photo = (contact.photo !== 'N/A') ? contact.photo : 'https://semantic-ui.com/images/avatar2/large/kristy.png';
-				const fullname = contact.firstName +' '+ contact.lastName;
-				return (
-				<div key={contact.id} className="card">
-					<div className="content">
-					  <img 
-					  	className="right floated mini ui image" 
-					  	src={photo} 
-					  	alt={fullname} 
-					  />
-					  <div className="header">
-					    {fullname}
-					  </div>
-					  <div className="meta">
-					    {contact.age} years old
-					  </div>
-					</div>
-					<div className="extra content">
-					  <div className="ui two buttons">
-					    <Link to={`/contact/edit/${contact.id}`} className="ui basic blue button">Edit</Link>
-					    <Link to={`/contact/delete/${contact.id}`} className="ui basic red button">Delete</Link>
-					  </div>
-					</div>
+		return res.map( (contact) => {
+			const photo = (contact.photo !== 'N/A') ? contact.photo : 'https://semantic-ui.com/images/avatar2/large/kristy.png';
+			const fullname = contact.firstName +' '+ contact.lastName;
+			return (
+			<div key={contact.id} className="card">
+				<div className="content">
+				  <img 
+				  	className="right floated mini ui image" 
+				  	src={photo} 
+				  	alt={fullname} 
+				  />
+				  <div className="header">
+				    {fullname}
+				  </div>
+				  <div className="meta">
+				    {contact.age} years old
+				  </div>
 				</div>
-				);
-			});
-		}
-
-		return (
-			<div class="ui top attached button">Wait a sec . . .</div>
-		);
+				<div className="extra content">
+				  <div className="ui two buttons">
+				    <Link to={`/contact/edit/${contact.id}`} className="ui basic blue button">Edit</Link>
+				    <Link to={`/contact/delete/${contact.id}`} className="ui basic red button">Delete</Link>
+				  </div>
+				</div>
+			</div>
+			);
+		});
 	}
 
 	renderStatus() {
@@ -59,7 +53,7 @@ class ContactList extends React.Component {
 	}
 
 	render() {
-		if (!this.props.contact) {
+		if (!this.props.contact.data) {
 			return (
 				<div className="ui active dimmer">
 				    <div className="ui mini text loader">Loading</div>

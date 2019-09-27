@@ -78,7 +78,7 @@ class ContactForm extends React.Component {
 					</div>
 					<div className="ui segment">
 						<Link to="/" className="tiny ui basic button">Back</Link>
-						<button className="tiny ui basic button primary">Submit</button>
+						<button className="tiny ui teal basic button">Submit</button>
 					</div>
 				</form>
 			</div>
