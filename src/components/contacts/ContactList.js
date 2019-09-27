@@ -10,8 +10,8 @@ class ContactList extends React.Component {
 	}
 
 	renderContactList() {
-		if (this.props.contact.data) {
-			const res = Object.values(this.props.contact.data);
+		const res = Object.values(this.props.contact.data);
+		if (res) {
 			return res.map( (contact) => {
 				const photo = (contact.photo !== 'N/A') ? contact.photo : 'https://semantic-ui.com/images/avatar2/large/kristy.png';
 				const fullname = contact.firstName +' '+ contact.lastName;
@@ -42,9 +42,7 @@ class ContactList extends React.Component {
 		}
 
 		return (
-			<div className="ui active dimmer">
-			    <div className="ui mini text loader">Loading</div>
-			</div>
+			<div class="ui top attached button">Wait a sec . . .</div>
 		);
 	}
 
@@ -61,7 +59,14 @@ class ContactList extends React.Component {
 	}
 
 	render() {
-		console.log(this.props.contact);
+		if (!this.props.contact) {
+			return (
+				<div className="ui active dimmer">
+				    <div className="ui mini text loader">Loading</div>
+				</div>
+			);
+		}
+
 		return (
 			<React.Fragment>
 				{this.renderStatus()}
