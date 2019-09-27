@@ -50,7 +50,7 @@ class ContactDelete extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-	return { contact: state.contacts[ownProps.match.params.id] };
+	return { contact: state.contacts.data[ownProps.match.params.id] };
 }
 
 export default connect(mapStateToProps, { deleteContact, getContactById })(ContactDelete);

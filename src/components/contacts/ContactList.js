@@ -1,43 +1,46 @@
 import './main.css';
 import React from 'react';
 import { connect } from 'react-redux';
-import { getAllContact } from '../../actions';
+import { getAllContact, start } from '../../actions';
 import { Link } from 'react-router-dom';
 
 class ContactList extends React.Component {
 	componentDidMount() {
 		this.props.getAllContact();
+		this.props.start();
 	}
 
 	renderContactList() {
 		const res = Object.values(this.props.contact.data);
-		return res.map( (contact) => {
-			const photo = (contact.photo !== 'N/A') ? contact.photo : 'https://semantic-ui.com/images/avatar2/large/kristy.png';
-			const fullname = contact.firstName +' '+ contact.lastName;
-			return (
-			<div key={contact.id} className="card">
-				<div className="content">
-				  <img 
-				  	className="right floated mini ui image" 
-				  	src={photo} 
-				  	alt={fullname} 
-				  />
-				  <div className="header">
-				    {fullname}
-				  </div>
-				  <div className="meta">
-				    {contact.age} years old
-				  </div>
+		if (res) {
+			return res.map( (contact) => {
+				const photo = (contact.photo !== 'N/A') ? contact.photo : 'https://semantic-ui.com/images/avatar2/large/kristy.png';
+				const fullname = contact.firstName +' '+ contact.lastName;
+				return (
+				<div key={contact.id} className="card">
+					<div className="content">
+					  <img 
+					  	className="right floated mini ui image" 
+					  	src={photo} 
+					  	alt={fullname} 
+					  />
+					  <div className="header">
+					    {fullname}
+					  </div>
+					  <div className="meta">
+					    {contact.age} years old
+					  </div>
+					</div>
+					<div className="extra content">
+					  <div className="ui two buttons">
+					    <Link to={`/contact/edit/${contact.id}`} className="ui basic blue button">Edit</Link>
+					    <Link to={`/contact/delete/${contact.id}`} className="ui basic red button">Delete</Link>
+					  </div>
+					</div>
 				</div>
-				<div className="extra content">
-				  <div className="ui two buttons">
-				    <Link to={`/contact/edit/${contact.id}`} className="ui basic blue button">Edit</Link>
-				    <Link to={`/contact/delete/${contact.id}`} className="ui basic red button">Delete</Link>
-				  </div>
-				</div>
-			</div>
-			);
-		});
+				);
+			});
+		}
 	}
 
 	renderStatus() {
@@ -49,11 +52,20 @@ class ContactList extends React.Component {
 			);
 		}
 
+		if (this.props.contact.msg) {
+			return (
+				<div className="ui success message">
+					{this.props.contact.msg}
+				</div>
+			);
+		}
+
 		return (<div></div>);
 	}
 
 	render() {
-		if (!this.props.contact.data) {
+		console.log(this.props.contact);
+		if (!this.props.contact) {
 			return (
 				<div className="ui active dimmer">
 				    <div className="ui mini text loader">Loading</div>
@@ -70,7 +82,7 @@ class ContactList extends React.Component {
 					</div>
 					<div className="ui segment contact-list">
 						<div className="ui centered cards">
-							{this.renderContactList()}
+						{this.renderContactList()}
 						</div>
 					</div>
 				</div>
@@ -83,4 +95,4 @@ const mapStateToProps = (state) => {
 	return {contact: state.contacts};
 };
 
-export default connect(mapStateToProps,{getAllContact})(ContactList);
+export default connect(mapStateToProps,{getAllContact, start})(ContactList);

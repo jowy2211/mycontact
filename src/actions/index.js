@@ -29,7 +29,7 @@ export const getContactById = (id) => {
 
 export const createContact = (formValues) => {
   return dispatch => {
-  	dispatch(started());
+    dispatch(started());
 
     axios
       .post(`https://simple-contact-crud.herokuapp.com/contact`, formValues)
@@ -45,8 +45,6 @@ export const createContact = (formValues) => {
 
 export const editContact = (id, formValues) => {
   return dispatch => {
-  	dispatch(started());
-
     axios
       .put(`https://simple-contact-crud.herokuapp.com/contact/${id}`, formValues)
       .then((res) => {
@@ -61,8 +59,6 @@ export const editContact = (id, formValues) => {
 
 export const deleteContact = (id) => {
   return dispatch => {
-  	dispatch(started());
-
     axios
       .delete(`https://simple-contact-crud.herokuapp.com/contact/${id}`)
       .then((res) => {
@@ -72,6 +68,12 @@ export const deleteContact = (id) => {
         dispatch(addContactFailure(err.message));
       });
     history.push('/');
+  };
+};
+
+export const start = () => {
+  return dispatch => {
+    dispatch(started());
   };
 };
 

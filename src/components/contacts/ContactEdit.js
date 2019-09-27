@@ -39,7 +39,7 @@ class ContactEdit extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
 	if (state.contacts) {
-		return { contact: state.contacts[ownProps.match.params.id] };
+		return { contact: state.contacts.data[ownProps.match.params.id] };
 	}
 };
 
