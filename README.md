@@ -1,6 +1,6 @@
 # MyContact CURD with ReactJS
 
-`Here the live app : http://mycontacts-app.surge.sh/`
+`Here the live app : [Go](http://mycontacts-app.surge.sh/)`
 
 ### Available Scripts
 
